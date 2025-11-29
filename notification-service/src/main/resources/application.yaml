@@ -1,0 +1,30 @@
+server:
+  port: 7003
+
+spring:
+  application:
+    name: notification-service
+
+  spring:
+    mail:
+      host: smtp.hostinger.com
+      port: 465
+    username: contactus@epitomehub.com          # TODO: replace
+    password: Intelcorei_5       # TODO: app password, not normal password
+  properties:
+    mail.smtp.auth: true
+    mail.smtp.ssl.enable: true
+    mail.smtp.socketFactory.port: 465
+    mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+    mail.smtp.ssl.trust: smtp.hostinger.com
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
