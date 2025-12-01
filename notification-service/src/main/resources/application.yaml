@@ -7,18 +7,19 @@ spring:
 
   spring:
     mail:
-      host: smtp.hostinger.com
-      port: 465
+      host: smtp.gmail.com
+      port: 587
       username: carverse.notifications@gmail.com
-      password: akueauigdpnupwcs   # 16 characters, spaces lekunda paste chey
-      properties:
-        mail:
-          smtp:
-            auth: true
-            starttls:
-              debug: true
-              enable: true
-              required: true
+    password: akueauigdpnupwcs   # 16 characters, spaces lekunda paste chey
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            debug: true
+            enable: true
+            required: true
+    default-encoding: UTF-8
 
 
 
@@ -32,3 +33,6 @@ management:
     web:
       exposure:
         include: health,info
+
+
+

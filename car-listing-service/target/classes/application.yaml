@@ -1,0 +1,42 @@
+server:
+  port: 7004
+
+spring:
+  application:
+    name: car-listing-service
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/carverse?createDatabaseIfNotExist=true
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+jwt:
+  # must be a BASE64 string with enough length; for now:
+  secret: bXktdmVyeS1sb25nLXNlY3JldC1rZXktY2FydmVyc2UtMjAyNQ==
+  expiration-ms: 900000           # 15 minutes
+  refresh-expiration-ms: 604800000 # 7 days
+
+  spring:
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: carverse.notifications@gmail.com
+    password: akueauigdpnupwcs   # 16 characters, spaces lekunda paste chey
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            debug: true
+            enable: true
+            required: true
+    default-encoding: UTF-8

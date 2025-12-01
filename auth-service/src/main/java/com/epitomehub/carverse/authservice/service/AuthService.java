@@ -65,9 +65,9 @@ public class AuthService {
                 .email(request.getEmail())
                 .phone(request.getPhone())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .roles(Set.of(Role.ROLE_USER))
-                .enabled(false)
-                .locked(false)
+                .enabled(true)          // <<< NEW
+                .locked(false)          // <<< NEW
+                // .roles(Set.of(Role.USER))  // mee project lo roles ela unayo ade vadandi
                 .build();
 
         userRepository.save(user);
@@ -144,7 +144,10 @@ public class AuthService {
             throw new BadRequestException("Account not verified. Please verify OTP.");
         }
 
-        String accessToken = jwtService.generateToken(userDetails);
+        // 🔑 Access token from User (includes userId claim)
+        String accessToken = jwtService.generateToken(user);
+
+        // 🔁 Refresh token from UserDetails
         String refreshToken = jwtService.generateRefreshToken(userDetails);
 
         return AuthResponse.builder()

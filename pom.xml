@@ -53,6 +53,29 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -75,7 +98,8 @@
 		<module>gateway-service</module>
 		<module>auth-service</module>
 		<module>notification-service</module>
-		<!--<module>notification-service/notification-service</module>-->
+        <module>car-listing-service</module>
+        <!--<module>notification-service/notification-service</module>-->
 
 		<!-- Next: user-service, listing-service, media-service, notification-service, chat-service, search-service -->
 	</modules>
