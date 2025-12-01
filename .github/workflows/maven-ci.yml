@@ -1,0 +1,37 @@
+name: Used Cars - Maven CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # manual run kosam
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'          # need ante 21 ki marchuko
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build with Maven (all modules)
+        run: mvn -B -ntp clean verify
+        # -B -> batch mode (less logs)
+        # -ntp -> no transfer progress (clean output)
+
+      - name: Archive test report (optional)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: "**/target/surefire-reports/*.xml"
+          if-no-files-found: ignore
