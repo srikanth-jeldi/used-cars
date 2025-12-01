@@ -2,10 +2,10 @@ package com.epitomehub.carverse.notificationservice.service;
 
 import com.epitomehub.carverse.notificationservice.dto.ChatNotificationRequest;
 import com.epitomehub.carverse.notificationservice.dto.OtpNotificationRequest;
-import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,6 +18,7 @@ public class NotificationService {
     private final SmsService smsService;
 
     // OTP notification (email + optional SMS)
+    @Async
     public void sendOtpNotification(OtpNotificationRequest request) {
 
         String subject = "Your CarVerse OTP Code";
@@ -37,12 +38,15 @@ public class NotificationService {
         emailService.sendHtmlMail(request.getEmail(), subject, html);
 
         if (request.getPhone() != null && !request.getPhone().isBlank()) {
-            smsService.sendSms(request.getPhone(),
-                    "Your CarVerse OTP is " + request.getOtpCode());
+            smsService.sendSms(
+                    request.getPhone(),
+                    "Your CarVerse OTP is " + request.getOtpCode()
+            );
         }
     }
 
     // Chat notification (buyer/seller message)
+    @Async
     public void sendChatNotification(ChatNotificationRequest request) {
 
         if (request.isSendEmail()) {
@@ -75,7 +79,10 @@ public class NotificationService {
             emailService.sendHtmlMail(request.getToEmail(), subject, html);
         }
 
-        if (request.isSendSms() && request.getToPhone() != null && !request.getToPhone().isBlank()) {
+        if (request.isSendSms()
+                && request.getToPhone() != null
+                && !request.getToPhone().isBlank()) {
+
             String smsText = "New CarVerse message from " + request.getFromName() +
                     ": " + request.getMessagePreview();
             smsService.sendSms(request.getToPhone(), smsText);

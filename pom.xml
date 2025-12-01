@@ -62,7 +62,7 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<configuration>
-						<mainClass>ignore.this.in.parent</mainClass>
+						<skip>true</skip>
 					</configuration>
 				</plugin>
 			</plugins>

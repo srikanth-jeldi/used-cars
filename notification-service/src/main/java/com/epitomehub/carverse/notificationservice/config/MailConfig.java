@@ -13,18 +13,19 @@ public class MailConfig {
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.hostinger.com");
-        mailSender.setPort(465);
-        mailSender.setUsername("contactus@epitomehub.com\n");   // full email
-        mailSender.setPassword("Intelcorei_5");          // real pass
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+        mailSender.setUsername("carverse.notifications@gmail.com");
+        mailSender.setPassword("akueauigdpnupwcs"); // 16 chars, no spaces
 
         Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.ssl.enable", "true");
-        props.put("mail.smtp.ssl.trust", "smtp.hostinger.com");
-        // if you ever use 587 instead:
         props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.debug", "true");
 
         return mailSender;
     }
+
 }

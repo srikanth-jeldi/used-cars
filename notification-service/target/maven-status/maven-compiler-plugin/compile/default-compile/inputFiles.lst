@@ -5,4 +5,5 @@ E:\carverse\carverse-backend\notification-service\src\main\java\com\epitomehub\c
 E:\carverse\carverse-backend\notification-service\src\main\java\com\epitomehub\carverse\notificationservice\controller\NotificationController.java
 E:\carverse\carverse-backend\notification-service\src\main\java\com\epitomehub\carverse\notificationservice\dto\OtpNotificationRequest.java
 E:\carverse\carverse-backend\notification-service\src\main\java\com\epitomehub\carverse\notificationservice\service\EmailService.java
+E:\carverse\carverse-backend\notification-service\src\main\java\com\epitomehub\carverse\notificationservice\config\MailConfig.java
 E:\carverse\carverse-backend\notification-service\src\main\java\com\epitomehub\carverse\notificationservice\service\SmsService.java
