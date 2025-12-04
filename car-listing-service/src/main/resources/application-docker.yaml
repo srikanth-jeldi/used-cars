@@ -1,0 +1,20 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: car-listing-service
+
+  datasource:
+    url: jdbc:mysql://mysql:3306/carverse?createDatabaseIfNotExist=true
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:eureka123@discovery-service:8761/eureka/

@@ -1,0 +1,33 @@
+server:
+  port: 7003
+
+spring:
+  application:
+    name: notification-service
+
+  mail:
+    host: smtp.hostinger.com
+    port: 587
+    username: your_email@domain.com
+    password: yourpassword
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  datasource:
+    url: jdbc:mysql://mysql:3306/carverse?createDatabaseIfNotExist=true
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:eureka123@discovery-service:8761/eureka/

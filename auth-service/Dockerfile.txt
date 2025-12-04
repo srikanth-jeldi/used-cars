@@ -1,0 +1,15 @@
+# 1) Base image - Java 17 or 21
+FROM eclipse-temurin:17-jdk-alpine
+
+# 2) Workdir inside container
+WORKDIR /app
+
+# 3) JAR file copy (generic pattern, jar name exact ga telsina avasaram ledu)
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+
+# 4) Service port
+EXPOSE 7001
+
+# 5) Run command
+ENTRYPOINT ["java","-jar","/app/app.jar"]

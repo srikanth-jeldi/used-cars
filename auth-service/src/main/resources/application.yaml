@@ -52,7 +52,14 @@ notification:
   email:
     from: "Carverse <carverse.notifications@gmail.com>"
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
 
 
 

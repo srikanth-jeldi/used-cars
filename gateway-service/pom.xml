@@ -33,4 +33,26 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.2.5</version>
+				<!-- 🚨 OVERRIDE parent/pluginManagement config -->
+				<configuration combine.self="override">
+					<skip>false</skip>
+					<mainClass>com.epitomehub.carverse.gateway.GatewayServiceApplication</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<id>repackage-gateway</id>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

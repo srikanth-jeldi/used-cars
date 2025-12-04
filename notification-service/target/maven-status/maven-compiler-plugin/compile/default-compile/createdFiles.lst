@@ -1,4 +1,5 @@
 com\epitomehub\carverse\notificationservice\service\EmailService.class
+com\epitomehub\carverse\notificationservice\config\SecurityConfig.class
 com\epitomehub\carverse\notificationservice\service\SmsService.class
 com\epitomehub\carverse\notificationservice\dto\ApiResponse.class
 com\epitomehub\carverse\notificationservice\dto\OtpNotificationRequest.class

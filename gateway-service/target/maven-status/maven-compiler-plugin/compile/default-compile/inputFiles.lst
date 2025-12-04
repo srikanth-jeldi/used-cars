@@ -1,1 +1,2 @@
-E:\carverse\carverse-backend\gateway-service\src\main\java\com\epitomehub\carverse\discovery\GatewayServiceApplication.java
+E:\carverse\carverse-backend\gateway-service\src\main\java\com\epitomehub\carverse\gateway\GatewayServiceApplication.java
+E:\carverse\carverse-backend\gateway-service\src\main\java\com\epitomehub\carverse\gateway\security\GatewaySecurityConfig.java

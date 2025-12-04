@@ -1,1 +1,2 @@
-com\epitomehub\carverse\discovery\GatewayServiceApplication.class
+com\epitomehub\carverse\gateway\GatewayServiceApplication.class
+com\epitomehub\carverse\gateway\security\GatewaySecurityConfig.class
