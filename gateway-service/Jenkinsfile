@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'maven-3'
+    }
+
+    stages {
+        stage('Build & Test gateway-service') {
+            steps {
+                sh 'mvn -B -pl gateway-service -am clean package -DskipTests'
+                sh 'mvn -B -pl gateway-service -am test'
+            }
+        }
+
+        stage('Archive gateway-service JAR') {
+            steps {
+                archiveArtifacts artifacts: 'gateway-service/target/*.jar', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ gateway-service build SUCCESS bro!'
+        }
+        failure {
+            echo '❌ gateway-service build FAILED.'
+        }
+    }
+}

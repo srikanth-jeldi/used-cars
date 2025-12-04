@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'maven-3'
+    }
+
+    stages {
+        stage('Build & Test auth-service') {
+            steps {
+                sh 'mvn -B -pl auth-service -am clean package -DskipTests'
+                sh 'mvn -B -pl auth-service -am test'
+            }
+        }
+
+        stage('Archive auth-service JAR') {
+            steps {
+                archiveArtifacts artifacts: 'auth-service/target/*.jar', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ auth-service build SUCCESS bro!'
+        }
+        failure {
+            echo '❌ auth-service build FAILED, console output chusko.'
+        }
+    }
+}
