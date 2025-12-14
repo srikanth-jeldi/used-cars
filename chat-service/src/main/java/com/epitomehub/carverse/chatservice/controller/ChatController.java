@@ -1,13 +1,16 @@
 package com.epitomehub.carverse.chatservice.controller;
 
-import com.epitomehub.carverse.chatservice.dto.ChatMessageResponse;
-import com.epitomehub.carverse.chatservice.dto.SendMessageRequest;
-import com.epitomehub.carverse.chatservice.dto.UnreadCountResponse;
+import com.epitomehub.carverse.chatservice.dto.*;
 import com.epitomehub.carverse.chatservice.service.ChatService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import com.epitomehub.carverse.chatservice.sse.SseHub;
 
 import java.util.List;
 
@@ -17,14 +20,12 @@ import java.util.List;
 public class ChatController {
 
     private final ChatService chatService;
+    private final SseHub sseHub;
 
-    // Step 5: senderId comes from JWT (Authentication principal)
     @PostMapping("/messages")
-    public ChatMessageResponse sendMessage(
-            Authentication authentication,
-            @Valid @RequestBody SendMessageRequest request) {
-
-        Long senderId = (Long) authentication.getPrincipal();
+    public ChatMessageResponse sendMessage(Authentication authentication,
+                                           @Valid @RequestBody SendMessageRequest request) {
+        Long senderId = requireUserId(authentication);
         return chatService.sendMessage(senderId, request);
     }
 
@@ -33,23 +34,50 @@ public class ChatController {
         return chatService.getMessages(conversationId);
     }
 
-    // Step 5: receiverId comes from JWT (Authentication principal)
     @PatchMapping("/{conversationId}/read")
-    public String markAsRead(
-            Authentication authentication,
-            @PathVariable Long conversationId) {
-
-        Long receiverId = (Long) authentication.getPrincipal();
+    public String markAsRead(Authentication authentication,
+                             @PathVariable Long conversationId) {
+        Long receiverId = requireUserId(authentication);
         int updated = chatService.markConversationAsRead(receiverId, conversationId);
         return "Marked as read. Updated rows: " + updated;
     }
 
-    // Step 5: unread count uses JWT principal
+    // TOTAL unread (requires JWT)
     @GetMapping("/unread-count")
     public UnreadCountResponse unreadCount(Authentication authentication) {
-
-        Long receiverId = (Long) authentication.getPrincipal();
+        Long receiverId = requireUserId(authentication);
         long count = chatService.getUnreadCount(receiverId);
         return new UnreadCountResponse(receiverId, count);
+    }
+
+    // NEW: unread count per conversation (requires JWT)
+    @GetMapping("/unread-count/by-conversation")
+    public List<UnreadByConversationResponse> unreadCountByConversation(Authentication authentication) {
+        Long receiverId = requireUserId(authentication);
+        return chatService.getUnreadCountPerConversation(receiverId);
+    }
+
+    // NEW: inbox (lastMessage + unreadCount) (requires JWT)
+    @GetMapping("/inbox")
+    public List<InboxItemDto> inbox(Authentication authentication) {
+        Long userId = requireUserId(authentication);
+        return chatService.getInbox(userId);
+    }
+
+    // NEW: SSE stream for real-time badge updates (requires JWT in Postman; browser needs token/cookie strategy)
+    @GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter subscribe(Authentication authentication) {
+        Long userId = requireUserId(authentication);
+        return sseHub.subscribe(userId);
+    }
+
+    private Long requireUserId(Authentication authentication) {
+        if (authentication == null || authentication.getPrincipal() == null) {
+            throw new AccessDeniedException("Unauthorized");
+        }
+        if (!(authentication.getPrincipal() instanceof Long)) {
+            throw new AccessDeniedException("Invalid principal");
+        }
+        return (Long) authentication.getPrincipal();
     }
 }

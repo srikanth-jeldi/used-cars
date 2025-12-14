@@ -1,12 +1,11 @@
 package com.epitomehub.carverse.chatservice.service;
 
-import com.epitomehub.carverse.chatservice.dto.ChatMessageResponse;
-import com.epitomehub.carverse.chatservice.dto.SendMessageRequest;
+import com.epitomehub.carverse.chatservice.dto.*;
 import com.epitomehub.carverse.chatservice.entity.ChatMessage;
 import com.epitomehub.carverse.chatservice.repository.ChatMessageRepository;
+import com.epitomehub.carverse.chatservice.sse.SseHub;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,105 +16,105 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatServiceImpl implements ChatService {
 
-    private static final Logger log = LoggerFactory.getLogger(ChatServiceImpl.class);
+    private final ChatMessageRepository chatMessageRepository;
+    private final SseHub sseHub;
 
-    private final ChatMessageRepository repository;
-
-    // Step 4: call notification-service after saving message
+    // optional: if you already have restTemplate bean
     private final RestTemplate restTemplate;
 
-    // Step 4: notification-service base url (later move to application.yml)
-    private static final String NOTIFICATION_URL = "http://localhost:7003/api/notifications/chat-message";
+    @Value("${notification.base-url:http://localhost:7003}")
+    private String notificationBaseUrl;
 
     @Override
     public ChatMessageResponse sendMessage(Long senderId, SendMessageRequest request) {
 
-        ChatMessage message = ChatMessage.builder()
-                .conversationId(request.getConversationId())
-                .senderId(senderId)
-                .receiverId(request.getReceiverId())
-                .message(request.getMessage())
-                .isRead(false)
-                .createdAt(LocalDateTime.now())
-                .build();
+        ChatMessage saved = chatMessageRepository.save(
+                ChatMessage.builder()
+                        .conversationId(request.conversationId())
+                        .senderId(senderId)
+                        .receiverId(request.receiverId())
+                        .message(request.message())
+                        .isRead(false)
+                        .createdAt(LocalDateTime.now())
+                        .build()
+        );
 
-        ChatMessage saved = repository.save(message);
+        // Fire-and-forget: notify notification-service (do not break chat if fails)
+        try {
+            String url = notificationBaseUrl + "/api/notifications/chat-message";
+            restTemplate.postForEntity(url, saved, Void.class);
+        } catch (Exception ignored) {
+            // keep silent or log warn in your logger
+        }
 
-        // Step 4: Notify (do NOT fail chat if notification fails)
-        sendChatEmailNotificationSafe(saved);
+        // SSE badge update for receiver
+        publishUnreadBadge(saved.getConversationId(), request.receiverId());
 
-        return mapToResponse(saved);
+        return toResponse(saved);
     }
 
     @Override
     public List<ChatMessageResponse> getMessages(Long conversationId) {
-        return repository.findByConversationIdOrderByCreatedAtAsc(conversationId)
+        return chatMessageRepository.findByConversationIdOrderByCreatedAtAsc(conversationId)
                 .stream()
-                .map(this::mapToResponse)
+                .map(this::toResponse)
                 .toList();
     }
 
     @Override
     public int markConversationAsRead(Long receiverId, Long conversationId) {
-        return repository.markConversationAsRead(conversationId, receiverId);
+        int updated = chatMessageRepository.markConversationAsRead(conversationId, receiverId);
+
+        // SSE badge update for receiver
+        publishUnreadBadge(conversationId, receiverId);
+
+        return updated;
     }
 
     @Override
     public long getUnreadCount(Long receiverId) {
-        return repository.countByReceiverIdAndIsReadFalse(receiverId);
+        return chatMessageRepository.countByReceiverIdAndIsReadFalse(receiverId);
     }
 
-    private ChatMessageResponse mapToResponse(ChatMessage message) {
-        return ChatMessageResponse.builder()
-                .id(message.getId())
-                .senderId(message.getSenderId())
-                .receiverId(message.getReceiverId())
-                .message(message.getMessage())
-                .isRead(message.isRead())
-                .createdAt(message.getCreatedAt())
-                .build();
+    @Override
+    public List<UnreadByConversationResponse> getUnreadCountPerConversation(Long receiverId) {
+        return chatMessageRepository.unreadCountsByConversation(receiverId)
+                .stream()
+                .map(v -> new UnreadByConversationResponse(v.getConversationId(), Long.parseLong(v.getUnreadCount().toString())))
+                .toList();
     }
 
-    /**
-     * Step 4 helper: calls notification-service safely.
-     * If notification-service is down or request fails, chat still succeeds.
-     */
-    private void sendChatEmailNotificationSafe(ChatMessage saved) {
-        try {
-            // Temporary placeholders (Step 4.2 will fetch from auth-service/user-service)
-            ChatNotificationRequest payload = ChatNotificationRequest.builder()
-                    .toEmail("receiver@example.com")          // TODO: fetch receiver email by receiverId
-                    .toName("Receiver")                      // TODO: fetch receiver name
-                    .toPhone(null)                           // optional
-                    .fromName("Sender")                      // TODO: fetch sender name
-                    .fromUserId(saved.getSenderId())
-                    .messagePreview(saved.getMessage())
-                    .carTitle(null)
-                    .chatUrl(null)
-                    .sendEmail(true)
-                    .sendSms(false)
-                    .build();
-
-            restTemplate.postForEntity(NOTIFICATION_URL, payload, Object.class);
-        } catch (Exception ex) {
-            log.warn("Notification-service call failed (ignored): {}", ex.getMessage());
-        }
+    @Override
+    public List<InboxItemDto> getInbox(Long userId) {
+        return chatMessageRepository.inbox(userId)
+                .stream()
+                .map(r -> new InboxItemDto(
+                        r.getConversationId(),
+                        r.getOtherUserId(),
+                        r.getLastMessage(),
+                        r.getLastMessageAt(),
+                        r.getUnreadCount() == null ? 0L : r.getUnreadCount()
+                ))
+                .toList();
     }
-    @lombok.Data
-    @lombok.Builder
-    private static class ChatNotificationRequest {
-        private String toEmail;
-        private String toName;
-        private String toPhone;
 
-        private String fromName;
-        private Long fromUserId;
+    private void publishUnreadBadge(Long conversationId, Long userId) {
+        long convUnread = chatMessageRepository.countByConversationIdAndReceiverIdAndIsReadFalse(conversationId, userId);
+        long totalUnread = chatMessageRepository.countByReceiverIdAndIsReadFalse(userId);
 
-        private String messagePreview;
-        private String carTitle;
-        private String chatUrl;
+        sseHub.publish(userId, "unread-badge",
+                new UnreadBadgeEvent(conversationId, convUnread, totalUnread));
+    }
 
-        private boolean sendEmail;
-        private boolean sendSms;
+    private ChatMessageResponse toResponse(ChatMessage m) {
+        return new ChatMessageResponse(
+                m.getId(),
+                m.getConversationId(),
+                m.getSenderId(),
+                m.getReceiverId(),
+                m.getMessage(),
+                m.isRead(),
+                m.getCreatedAt()
+        );
     }
 }

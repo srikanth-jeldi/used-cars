@@ -1,7 +1,6 @@
 package com.epitomehub.carverse.chatservice.service;
 
-import com.epitomehub.carverse.chatservice.dto.ChatMessageResponse;
-import com.epitomehub.carverse.chatservice.dto.SendMessageRequest;
+import com.epitomehub.carverse.chatservice.dto.*;
 
 import java.util.List;
 
@@ -14,4 +13,8 @@ public interface ChatService {
     int markConversationAsRead(Long receiverId, Long conversationId);
 
     long getUnreadCount(Long receiverId);
+
+    List<UnreadByConversationResponse> getUnreadCountPerConversation(Long receiverId);
+
+    List<InboxItemDto> getInbox(Long userId);
 }

@@ -2,11 +2,11 @@ package com.epitomehub.carverse.chatservice.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
 @Service
@@ -14,8 +14,10 @@ public class JwtService {
 
     private final Key key;
 
-    public JwtService(@Value("${jwt.secret}") String secret) {
-        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    public JwtService(@Value("${jwt.secret}") String secretKey) {
+        // IMPORTANT: auth-service uses BASE64 decode; chat-service must do same
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public Claims extractAllClaims(String token) {
@@ -29,14 +31,12 @@ public class JwtService {
     public Long extractUserId(String token) {
         Claims claims = extractAllClaims(token);
 
-        // Option A: token contains "userId"
-        Object userId = claims.get("userId");
-
-        if (userId != null) {
-            return Long.valueOf(userId.toString());
+        Object userIdObj = claims.get("userId");
+        if (userIdObj != null) {
+            return Long.valueOf(userIdObj.toString());
         }
 
-        // Option B: token uses subject as user id
+        // fallback (only works if subject is numeric userId)
         return Long.valueOf(claims.getSubject());
     }
 }

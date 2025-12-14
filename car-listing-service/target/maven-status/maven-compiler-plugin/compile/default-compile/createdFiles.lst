@@ -1,5 +1,6 @@
 com\epitomehub\carverse\carlisting\service\CarSearchService.class
 com\epitomehub\carverse\carlisting\exception\GlobalExceptionHandler.class
+com\epitomehub\carverse\carlisting\exception\GlobalExceptionHandler$ApiError.class
 com\epitomehub\carverse\carlisting\entity\CarImage.class
 com\epitomehub\carverse\carlisting\dto\PageResponse$PageResponseBuilder.class
 com\epitomehub\carverse\carlisting\repository\CarSpecifications.class

@@ -10,13 +10,13 @@ com\epitomehub\carverse\authservice\dto\RegisterRequest.class
 com\epitomehub\carverse\authservice\exception\GlobalExceptionHandler.class
 com\epitomehub\carverse\authservice\service\AuthService.class
 com\epitomehub\carverse\authservice\entity\User$UserBuilder.class
-com\epitomehub\carverse\authservice\config\RestClientConfig.class
 com\epitomehub\carverse\authservice\service\CustomUserDetailsService.class
 com\epitomehub\carverse\authservice\service\OtpService.class
 com\epitomehub\carverse\authservice\dto\AuthResponse$AuthResponseBuilder.class
 com\epitomehub\carverse\authservice\repository\OtpTokenRepository.class
 com\epitomehub\carverse\authservice\dto\ApiResponse.class
 com\epitomehub\carverse\authservice\dto\AuthResponse.class
+com\epitomehub\carverse\authservice\config\RestTemplateConfig.class
 com\epitomehub\carverse\authservice\dto\VerifyOtpOnlyRequest.class
 com\epitomehub\carverse\authservice\dto\OtpNotificationRequest.class
 com\epitomehub\carverse\authservice\entity\OtpToken.class
