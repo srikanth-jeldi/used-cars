@@ -5,23 +5,19 @@ spring:
   application:
     name: notification-service
 
-  spring:
-    mail:
-      host: smtp.gmail.com
-      port: 587
-      username: carverse.notifications@gmail.com
-    password: akueauigdpnupwcs   # 16 characters, spaces lekunda paste chey
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: carverse.notifications@gmail.com
+    password: akueauigdpnupwcs
     properties:
       mail:
         smtp:
           auth: true
           starttls:
-            debug: true
             enable: true
             required: true
     default-encoding: UTF-8
-
-
 
 eureka:
   client:
@@ -33,6 +29,11 @@ management:
     web:
       exposure:
         include: health,info
+jwt:
+  # must be a BASE64 string with enough length; for now:
+  secret: bXktdmVyeS1sb25nLXNlY3JldC1rZXktY2FydmVyc2UtMjAyNQ==
+  expiration-ms: 900000           # 15 minutes
+  refresh-expiration-ms: 604800000 # 7 days
 
 
 

@@ -99,6 +99,7 @@
 		<module>auth-service</module>
 		<module>notification-service</module>
         <module>car-listing-service</module>
+        <module>chat-service</module>
         <!--<module>notification-service/notification-service</module>-->
 
 		<!-- Next: user-service, listing-service, media-service, notification-service, chat-service, search-service -->

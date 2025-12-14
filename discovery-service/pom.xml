@@ -34,7 +34,7 @@
 				<!-- 🚨 OVERRIDE parent/pluginManagement config -->
 				<configuration combine.self="override">
 					<skip>false</skip>
-					<mainClass>com.epitomehub.carverse.gateway.DiscoveryServiceApplication</mainClass>
+					<mainClass>com.epitomehub.carverse.discovery.DiscoveryServiceApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>

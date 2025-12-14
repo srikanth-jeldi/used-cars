@@ -97,7 +97,7 @@
                 <version>3.2.5</version>
                 <configuration combine.self="override">
                     <skip>false</skip>
-                    <mainClass>com.epitomehub.carverse.carservice.CarListingServiceApplication</mainClass>
+                    <mainClass>com.epitomehub.carverse.carlisting.CarListingServiceApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

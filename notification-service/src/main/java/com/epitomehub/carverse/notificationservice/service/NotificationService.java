@@ -1,12 +1,13 @@
 package com.epitomehub.carverse.notificationservice.service;
 
-import com.epitomehub.carverse.notificationservice.dto.ChatNotificationRequest;
-import com.epitomehub.carverse.notificationservice.dto.OtpNotificationRequest;
+
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import com.epitomehub.carverse.notificationservice.dto.ChatNotificationRequest;
+import com.epitomehub.carverse.notificationservice.dto.OtpNotificationRequest;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +18,6 @@ public class NotificationService {
     private final EmailService emailService;
     private final SmsService smsService;
 
-    // OTP notification (email + optional SMS)
     @Async
     public void sendOtpNotification(OtpNotificationRequest request) {
 
@@ -38,14 +38,10 @@ public class NotificationService {
         emailService.sendHtmlMail(request.getEmail(), subject, html);
 
         if (request.getPhone() != null && !request.getPhone().isBlank()) {
-            smsService.sendSms(
-                    request.getPhone(),
-                    "Your CarVerse OTP is " + request.getOtpCode()
-            );
+            smsService.sendSms(request.getPhone(), "Your CarVerse OTP is " + request.getOtpCode());
         }
     }
 
-    // Chat notification (buyer/seller message)
     @Async
     public void sendChatNotification(ChatNotificationRequest request) {
 

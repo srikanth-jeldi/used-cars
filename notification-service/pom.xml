@@ -57,6 +57,7 @@
                 <configuration combine.self="override">
                     <skip>false</skip>
                     <mainClass>com.epitomehub.carverse.notificationservice.NotificationServiceApplication</mainClass>
+
                 </configuration>
                 <executions>
                     <execution>

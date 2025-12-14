@@ -1,0 +1,22 @@
+server:
+  port: 7004
+
+spring:
+  application:
+    name: chat-service
+
+  datasource:
+    url: jdbc:mysql://mysql:3306/carverse
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka
