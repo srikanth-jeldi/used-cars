@@ -1,4 +1,4 @@
-package com.epitomehub.carverse.gateway.security;
+package com.epitomehub.carverse.gatewayservice.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
