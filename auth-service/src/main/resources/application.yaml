@@ -6,19 +6,38 @@ spring:
     name: auth-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/carverse_authdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/carverse_authdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
+    open-in-view: false
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: carverse.notifications@gmail.com
+    password: akueauigdpnupwcs
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+    default-encoding: UTF-8
 
 eureka:
   client:
@@ -26,27 +45,9 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 jwt:
-  # must be a BASE64 string with enough length; for now:
   secret: bXktdmVyeS1sb25nLXNlY3JldC1rZXktY2FydmVyc2UtMjAyNQ==
-  expiration-ms: 900000           # 15 minutes
-  refresh-expiration-ms: 604800000 # 7 days
-
-  spring:
-    mail:
-      host: smtp.gmail.com
-      port: 587
-      username: carverse.notifications@gmail.com
-    password: akueauigdpnupwcs   # 16 characters, spaces lekunda paste chey
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            debug: true
-            enable: true
-            required: true
-    default-encoding: UTF-8
-
+  expiration-ms: 900000
+  refresh-expiration-ms: 604800000
 
 notification:
   email:
@@ -60,12 +61,3 @@ management:
   endpoint:
     health:
       show-details: always
-
-
-
-
-
-
-
-
-

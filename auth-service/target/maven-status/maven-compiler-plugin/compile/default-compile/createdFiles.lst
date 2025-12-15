@@ -1,14 +1,18 @@
+com\epitomehub\carverse\authservice\config\SecurityBeansConfig.class
 com\epitomehub\carverse\authservice\entity\OtpToken$OtpType.class
 com\epitomehub\carverse\authservice\controller\AuthController.class
 com\epitomehub\carverse\authservice\entity\OtpToken$OtpTokenBuilder.class
+com\epitomehub\carverse\authservice\dto\MeResponse.class
 com\epitomehub\carverse\authservice\entity\User.class
 com\epitomehub\carverse\authservice\AuthServiceApplication.class
+com\epitomehub\carverse\authservice\exception\ApiError.class
 com\epitomehub\carverse\authservice\dto\LoginRequest.class
 com\epitomehub\carverse\authservice\exception\BadRequestException.class
 com\epitomehub\carverse\authservice\config\JwtAuthenticationFilter.class
 com\epitomehub\carverse\authservice\dto\RegisterRequest.class
 com\epitomehub\carverse\authservice\exception\GlobalExceptionHandler.class
 com\epitomehub\carverse\authservice\service\AuthService.class
+com\epitomehub\carverse\authservice\security\SecurityConfig.class
 com\epitomehub\carverse\authservice\entity\User$UserBuilder.class
 com\epitomehub\carverse\authservice\service\CustomUserDetailsService.class
 com\epitomehub\carverse\authservice\service\OtpService.class
@@ -22,7 +26,6 @@ com\epitomehub\carverse\authservice\dto\OtpNotificationRequest.class
 com\epitomehub\carverse\authservice\entity\OtpToken.class
 com\epitomehub\carverse\authservice\repository\UserRepository.class
 com\epitomehub\carverse\authservice\entity\Role.class
-com\epitomehub\carverse\authservice\config\SecurityConfig.class
 com\epitomehub\carverse\authservice\service\JwtService.class
 com\epitomehub\carverse\authservice\dto\OtpNotificationRequest$OtpNotificationRequestBuilder.class
 com\epitomehub\carverse\authservice\exception\ResourceNotFoundException.class

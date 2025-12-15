@@ -28,33 +28,18 @@ public class JwtService {
     @Value("${jwt.refresh-expiration-ms}")
     private long refreshExpirationMs;
 
-    /**
-     * Generate access token with userId claim.
-     */
     public String generateToken(User user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", user.getId());      // 👈 we need this in car-service
-
-        // we only need username (email) for subject
+        claims.put("userId", user.getId()); // keep this (needed for /me + other services)
         return buildToken(claims, user.getEmail(), jwtExpirationMs);
     }
 
-    /**
-     * Generate refresh token (no extra claims).
-     */
     public String generateRefreshToken(UserDetails userDetails) {
         return buildToken(new HashMap<>(), userDetails.getUsername(), refreshExpirationMs);
     }
 
-    /**
-     * Common token builder – uses plain username instead of User/UserDetails
-     */
-    private String buildToken(Map<String, Object> extraClaims,
-                              String username,
-                              long expiration) {
-
+    private String buildToken(Map<String, Object> extraClaims, String username, long expiration) {
         long now = System.currentTimeMillis();
-
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(username)
@@ -68,9 +53,29 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
+    /** Used in login flow */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+    }
+
+    /** Used by JwtAuthenticationFilter (no DB call needed) */
+    public boolean isTokenValid(String token) {
+        try {
+            extractAllClaims(token); // validates signature
+            return !isTokenExpired(token);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Long extractUserId(String token) {
+        Object val = extractAllClaims(token).get("userId");
+        if (val == null) return null;
+        if (val instanceof Integer i) return i.longValue();
+        if (val instanceof Long l) return l;
+        if (val instanceof String s) return Long.parseLong(s);
+        throw new IllegalArgumentException("Invalid userId claim type: " + val.getClass());
     }
 
     private boolean isTokenExpired(String token) {
@@ -95,7 +100,6 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        // secretKey must be BASE64 encoded string from application.yml
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }

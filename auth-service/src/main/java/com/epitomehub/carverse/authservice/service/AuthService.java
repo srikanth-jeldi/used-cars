@@ -23,6 +23,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Random;
 import java.util.Set;
+import com.epitomehub.carverse.authservice.dto.MeResponse;
+
 
 @Service
 public class AuthService {
@@ -65,9 +67,9 @@ public class AuthService {
                 .email(request.getEmail())
                 .phone(request.getPhone())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .enabled(true)          // <<< NEW
-                .locked(false)          // <<< NEW
-                // .roles(Set.of(Role.USER))  // mee project lo roles ela unayo ade vadandi
+                .enabled(false)                 // IMPORTANT: should be false until OTP verified
+                .locked(false)
+                .roles(Set.of(Role.ROLE_USER))      // ensure user has role
                 .build();
 
         userRepository.save(user);
@@ -159,5 +161,22 @@ public class AuthService {
                 .phone(user.getPhone())
                 .enabled(user.isEnabled())
                 .build();
+    }
+    public MeResponse me(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        // if roles are null, return empty set
+        Set<String> roles = (user.getRoles() == null)
+                ? Set.of()
+                : user.getRoles().stream().map(Enum::name).collect(java.util.stream.Collectors.toSet());
+
+        return new MeResponse(
+                user.getId(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getPhone(),
+                roles
+        );
     }
 }
