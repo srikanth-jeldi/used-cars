@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f8e4b4a4-c22b-4a0f-8937-9782a4f8fd9a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/auth-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/effective-pom" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/effective-pom" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/AuthServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/AuthServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/config/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/config/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/config/RestTemplateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/config/RestTemplateConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/config/SecurityBeansConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/config/SecurityBeansConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/ApiResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/AuthResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/MeResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/MeResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/OtpNotificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/OtpNotificationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/VerifyOtpOnlyRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/dto/VerifyOtpOnlyRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/entity/OtpToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/entity/OtpToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/exception/ApiError.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/exception/ApiError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/exception/BadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/exception/BadRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/repository/OtpTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/repository/OtpTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/service/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/service/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/service/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/service/OtpService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/epitomehub/carverse/authservice/service/OtpService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/db/migration/V2__create_auth_tables.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/db/migration/V2__fix_role_enum.sql" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/db/migration/V2__fix_role_enum.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/target/auth-service-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/target/auth-service-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/target/auth-service-1.0.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/target/auth-service-1.0.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/target/classes/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/target/classes/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/car-listing-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/CarListingServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/CarListingServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/controller/CarController.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/controller/CarController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/CarRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/CarRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/CarResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/CarResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/CarResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/CarResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/CarSearchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/CarSearchRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/PageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/dto/PageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/entity/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/entity/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/entity/CarImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/entity/CarImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/ApiError.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/ApiError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/BadRequestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/BadRequestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/ConflictException.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/ConflictException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/mapper/CarMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/mapper/CarMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/repository/CarImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/repository/CarImageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/repository/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/repository/CarRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/repository/CarSpecifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/repository/CarSpecifications.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/security/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/service/CarSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/service/CarSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/service/CarSearchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/service/CarSearchServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/service/CarService.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/service/CarService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/service/CarServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/service/CarServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/specification/CarSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/java/com/epitomehub/carverse/carlisting/specification/CarSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/resources/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/resources/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/car-listing-service-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/target/car-listing-service-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/car-listing-service-1.0.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/target/car-listing-service-1.0.0.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/target/classes/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/CarListingServiceApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/controller/CarController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/dto/CarRequestDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/dto/CarResponseDto$CarResponseDtoBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/dto/CarResponseDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/entity/Car$CarBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/entity/Car.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/entity/CarImage$CarImageBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/entity/CarImage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/mapper/CarMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/repository/CarImageRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/repository/CarRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/repository/CarSpecifications.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/security/JwtAuthenticationFilter$UserPrincipal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/security/JwtAuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/security/JwtService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/security/JwtUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/security/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/service/CarService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/classes/com/epitomehub/carverse/carservice/service/CarServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/car-listing-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/car-listing-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/ChatServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/ChatServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/config/RestClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/config/RestClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/ChatMessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/ChatMessageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/InboxItemDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/InboxItemDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/MarkReadRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/MarkReadRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/SendMessageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/SendMessageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/UnreadBadgeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/UnreadBadgeEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/UnreadByConversationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/UnreadByConversationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/UnreadCountResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/dto/UnreadCountResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/entity/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/entity/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/exception/ApiError.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/exception/ApiError.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/integration/NotificationClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/integration/NotificationClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/integration/dto/ChatNotificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/integration/dto/ChatNotificationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/repository/ChatMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/repository/ChatMessageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/service/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/service/ChatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/service/ChatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/service/ChatServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/sse/SseHub.java" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/java/com/epitomehub/carverse/chatservice/sse/SseHub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/resources/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/resources/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat-service/src/main/resources/db/migration/V1__create_chat_messages.sql" beforeDir="false" afterPath="$PROJECT_DIR$/chat-service/src/main/resources/db/migration/V1__create_chat_messages.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/java/com/epitomehub/carverse/discovery/DiscoveryServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/java/com/epitomehub/carverse/discovery/DiscoveryServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/java/com/epitomehub/carverse/discovery/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/java/com/epitomehub/carverse/discovery/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/resources/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/resources/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/target/classes/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/target/classes/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/target/discovery-service-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/target/discovery-service-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/target/discovery-service-1.0.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/target/discovery-service-1.0.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/gateway-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/epitomehub/carverse/gateway/GatewayServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/epitomehub/carverse/gateway/GatewayServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/epitomehub/carverse/gateway/security/GatewaySecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/epitomehub/carverse/gateway/security/GatewaySecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/epitomehub/carverse/gateway/security/JwtGatewayFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/epitomehub/carverse/gateway/security/JwtGatewayFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/java/com/epitomehub/carverse/gateway/security/JwtService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/java/com/epitomehub/carverse/gateway/security/JwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/target/classes/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/target/classes/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/target/classes/com/epitomehub/carverse/gateway/security/GatewaySecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/target/gateway-service-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/target/gateway-service-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/target/gateway-service-1.0.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/target/gateway-service-1.0.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/gateway-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/notification-service.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/NotificationServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/NotificationServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/config/MailConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/config/MailConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/dto/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/dto/ApiResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/dto/ChatNotificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/dto/ChatNotificationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/dto/OtpNotificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/dto/OtpNotificationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/service/SmsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/java/com/epitomehub/carverse/notificationservice/service/SmsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/target/classes/application-docker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/target/classes/application-docker.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/target/classes/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/target/classes/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/target/notification-service-1.0.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/target/notification-service-1.0.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notification-service/target/notification-service-1.0.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/notification-service/target/notification-service-1.0.0-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="36xkR6S7GN2yyxbIW7kR0IW6dNY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.AuthServiceApplication.executor": "Run",
+    "Spring Boot.ChatServiceApplication.executor": "Run",
+    "Spring Boot.DiscoveryServiceApplication.executor": "Run",
+    "Spring Boot.NotificationServiceApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/carverse/car/auth-service/src/main/resources/db/migration",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\carverse\car\auth-service\src\main\resources\db\migration" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="AuthServiceApplication" value="FAILED" />
+              <entry key="ChatServiceApplication" value="FAILED" />
+              <entry key="DiscoveryServiceApplication" value="FAILED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ChatServiceApplication">
+    <configuration name="AuthServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="auth-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.epitomehub.carverse.authservice.AuthServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CarListingServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="car-listing-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.epitomehub.carverse.carlisting.CarListingServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ChatServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="chat-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.epitomehub.carverse.chatservice.ChatServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.epitomehub.carverse.chatservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="discovery-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.epitomehub.carverse.discovery.DiscoveryServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gateway-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.epitomehub.carverse.gateway.GatewayServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="notification-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.epitomehub.carverse.notificationservice.NotificationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ChatServiceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
+        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-IU-253.28294.334" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f8e4b4a4-c22b-4a0f-8937-9782a4f8fd9a" name="Changes" comment="" />
+      <created>1765955603143</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765955603143</updated>
+      <workItem from="1765955609417" duration="7889000" />
+      <workItem from="1765968362417" duration="115000" />
+      <workItem from="1765970399561" duration="978000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

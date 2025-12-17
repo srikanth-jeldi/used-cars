@@ -1,18 +1,19 @@
-create table if not exists chat_messages (
-  id bigint primary key auto_increment,
-  conversation_id bigint not null,
-  sender_id bigint not null,
-  receiver_id bigint not null,
-  message varchar(2000) not null,
-  is_read bit not null,
-  created_at datetime(6) not null
-);
+CREATE TABLE IF NOT EXISTS chat_messages (
+                                             id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                                             conversation_id BIGINT NOT NULL,
+                                             sender_id BIGINT NOT NULL,
+                                             receiver_id BIGINT NOT NULL,
+                                             message VARCHAR(2000) NOT NULL,
+    is_read BIT NOT NULL,
+    created_at DATETIME(6) NOT NULL
+    );
 
-create index if not exists idx_chat_conv_created
-  on chat_messages (conversation_id, created_at);
+-- indexes (MySQL-compatible)
+CREATE INDEX idx_chat_conv_created
+    ON chat_messages (conversation_id, created_at);
 
-create index if not exists idx_chat_receiver_read
-  on chat_messages (receiver_id, is_read);
+CREATE INDEX idx_chat_receiver_read
+    ON chat_messages (receiver_id, is_read);
 
-create index if not exists idx_chat_receiver_conv_read
-  on chat_messages (receiver_id, conversation_id, is_read);
+CREATE INDEX idx_chat_receiver_conv_read
+    ON chat_messages (receiver_id, conversation_id, is_read);
