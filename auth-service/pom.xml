@@ -122,12 +122,16 @@
 					</execution>
 				</executions>
 			</plugin>
+<<<<<<< HEAD
 
 			<!-- Flyway Maven Plugin (single definition) -->
+=======
+>>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4
 			<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<version>10.10.0</version>
+<<<<<<< HEAD
 				<configuration>
 					<url>jdbc:mysql://localhost:3306/carverse_authdb?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC</url>
 					<user>root</user>
@@ -139,6 +143,9 @@
 				</configuration>
 			</plugin>
 
+=======
+			</plugin>
+>>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4
 		</plugins>
 	</build>
 

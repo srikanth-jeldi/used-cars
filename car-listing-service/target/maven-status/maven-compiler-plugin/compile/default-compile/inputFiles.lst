@@ -1,5 +1,8 @@
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\exception\ApiError.java
+<<<<<<< HEAD
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\repository\CarRepository.java
+=======
+>>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\service\CarSearchServiceImpl.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\controller\CarController.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\exception\GlobalExceptionHandler.java
@@ -7,12 +10,16 @@ E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlis
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\entity\Car.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\security\SecurityConfig.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\repository\CarSpecifications.java
+<<<<<<< HEAD
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\security\JwtUtil.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\service\CarService.java
+=======
+>>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\exception\ConflictException.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\repository\CarImageRepository.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\entity\CarImage.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\service\CarSearchService.java
+<<<<<<< HEAD
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\entity\CarImage.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\security\JwtAuthenticationFilter.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\security\JwtUtil.java
@@ -34,10 +41,25 @@ E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlis
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\mapper\CarMapper.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\repository\CarImageRepository.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\service\CarServiceImpl.java
+=======
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\security\JwtAuthenticationFilter.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\security\JwtUtil.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\security\JwtService.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\exception\ResourceNotFoundException.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\service\CarService.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\dto\CarSearchRequest.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\repository\CarRepository.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\exception\BadRequestException.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\dto\CarResponseDto.java
+E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\service\CarServiceImpl.java
+>>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\CarListingServiceApplication.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\dto\CarRequestDto.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\mapper\CarMapper.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\dto\CarResponse.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carlisting\dto\PageResponse.java
+<<<<<<< HEAD
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\security\JwtAuthenticationFilter.java
 E:\carverse\car\car-listing-service\src\main\java\com\epitomehub\carverse\carservice\security\JwtService.java
+=======
+>>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4

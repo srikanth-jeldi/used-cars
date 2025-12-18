@@ -17,7 +17,10 @@ E:\carverse\car\auth-service\src\main\java\com\epitomehub\carverse\authservice\s
 E:\carverse\car\auth-service\src\main\java\com\epitomehub\carverse\authservice\config\JwtAuthenticationFilter.java
 E:\carverse\car\auth-service\src\main\java\com\epitomehub\carverse\authservice\controller\AuthController.java
 E:\carverse\car\auth-service\src\main\java\com\epitomehub\carverse\authservice\exception\ResourceNotFoundException.java
+<<<<<<< HEAD
 E:\carverse\car\auth-service\src\main\java\com\epitomehub\carverse\authservice\dto\OtpVerifyRequest.java
+=======
+>>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4
 E:\carverse\car\auth-service\src\main\java\com\epitomehub\carverse\authservice\dto\ApiResponse.java
 E:\carverse\car\auth-service\src\main\java\com\epitomehub\carverse\authservice\exception\GlobalExceptionHandler.java
 E:\carverse\car\auth-service\src\main\java\com\epitomehub\carverse\authservice\exception\ApiError.java

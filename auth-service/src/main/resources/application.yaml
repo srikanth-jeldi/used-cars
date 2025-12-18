@@ -24,11 +24,12 @@ spring:
 
   flyway:
     enabled: true
-    baseline-on-migrate: true
+    baseline-on-migrate: false
     locations: classpath:db/migration
     table: flyway_schema_history_auth
     # Optional but good for dev
     out-of-order: true
+
 
   mail:
     host: smtp.gmail.com
@@ -67,4 +68,15 @@ management:
         include: health,info,metrics
   endpoint:
     health:
+<<<<<<< HEAD
       show-details: always
+=======
+      show-details: always
+
+
+
+
+
+
+
+>>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4
