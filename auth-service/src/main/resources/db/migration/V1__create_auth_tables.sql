@@ -1,36 +1,49 @@
-create table if not exists users (
-  id bigint primary key auto_increment,
-  full_name varchar(255) not null,
-  email varchar(255) not null,
-  phone varchar(50) not null,
-  password varchar(255) not null,
-  enabled bit not null,
-  locked bit not null,
-  created_at timestamp not null
-);
+-- =========================
+-- AUTH SERVICE - V1 Schema
+-- =========================
 
-create table if not exists user_roles (
-  user_id bigint not null,
-  roles varchar(50) not null,
-  constraint fk_user_roles_user
-    foreign key (user_id) references users(id)
-    on delete cascade
-);
+-- USERS
+CREATE TABLE IF NOT EXISTS users (
+                                     id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                                     full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    enabled BIT NOT NULL,
+    locked  BIT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
 
-create table if not exists otp_tokens (
-  id bigint primary key auto_increment,
-  otp_code varchar(20) not null,
-  identifier varchar(255) not null,
-  expires_at timestamp not null,
-  used bit not null,
-  type varchar(30) not null
-);
+-- USER ROLES (matches entity column name: role)
+CREATE TABLE IF NOT EXISTS user_roles (
+                                          user_id BIGINT NOT NULL,
+                                          role VARCHAR(50) NOT NULL,
+    CONSTRAINT fk_user_roles_user
+    FOREIGN KEY (user_id) REFERENCES users(id)
+    ON DELETE CASCADE
+    );
 
--- important indexes for performance + uniqueness
-create unique index if not exists ux_users_email on users(email);
-create unique index if not exists ux_users_phone on users(phone);
+-- OTP TOKENS (type is ENUM to match your entity mapping)
+CREATE TABLE IF NOT EXISTS otp_tokens (
+                                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                                          otp_code VARCHAR(20) NOT NULL,
+    identifier VARCHAR(255) NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    used BIT NOT NULL,
+    type ENUM('registration','forgot_password') NOT NULL
+    );
 
-create index if not exists idx_user_roles_user on user_roles(user_id);
+-- =========================
+-- INDEXES (MySQL syntax)
+-- =========================
 
-create index if not exists idx_otp_identifier_type_used on otp_tokens(identifier, type, used);
-create index if not exists idx_otp_expires_at on otp_tokens(expires_at);
+-- Users uniqueness
+CREATE UNIQUE INDEX ux_users_email ON users(email);
+CREATE UNIQUE INDEX ux_users_phone ON users(phone);
+
+-- user_roles lookups
+CREATE INDEX idx_user_roles_user_id ON user_roles(user_id);
+
+-- otp_tokens lookups
+CREATE INDEX idx_otp_identifier_type_used ON otp_tokens(identifier, type, used);
+CREATE INDEX idx_otp_expires_at ON otp_tokens(expires_at);

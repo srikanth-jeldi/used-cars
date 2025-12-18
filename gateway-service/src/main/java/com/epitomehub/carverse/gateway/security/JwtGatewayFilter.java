@@ -1,4 +1,4 @@
-package com.epitomehub.carverse.gatewayservice.security;
+package com.epitomehub.carverse.gateway.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.Ordered;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtGatewayFilter implements GlobalFilter, Ordered {
 
-    private final JwtService jwtService;
+    private final com.epitomehub.carverse.gatewayservice.security.JwtService jwtService;
 
     private static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
 

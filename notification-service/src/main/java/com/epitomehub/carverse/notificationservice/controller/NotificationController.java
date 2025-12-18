@@ -6,6 +6,8 @@ import com.epitomehub.carverse.notificationservice.dto.OtpNotificationRequest;
 import com.epitomehub.carverse.notificationservice.service.NotificationService;
 import com.epitomehub.carverse.notificationservice.service.EmailService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,9 @@ public class NotificationController {
 
     private final NotificationService notificationService;
     private final EmailService emailService;
+    private static final Logger log =
+            LoggerFactory.getLogger(NotificationController.class);
+
 
     public NotificationController(NotificationService notificationService,
                                   EmailService emailService) {
@@ -23,13 +28,23 @@ public class NotificationController {
     }
 
     /**
-     * Called by auth-service when user registers.
-     * Sends OTP via email/SMS.
+     * Sends OTP via Email (SMS later)
      */
     @PostMapping("/otp")
-    public ResponseEntity<ApiResponse> sendOtp(@Valid @RequestBody OtpNotificationRequest request) {
-        notificationService.sendOtpNotification(request);
-        return ResponseEntity.ok(new ApiResponse(true, "OTP notification sent"));
+    public ResponseEntity<Void> sendOtp(@Valid @RequestBody OtpNotificationRequest request) {
+
+        log.info("OTP request received for email={}", request.getEmail());
+
+        String subject = "Carverse OTP Verification";
+        String body =
+                "Hi " + request.getFullName() + ",\n\n"
+                        + "Your OTP is: " + request.getOtpCode() + "\n\n"
+                        + "If you did not request this, please ignore this email.\n\n"
+                        + "Thanks,\nCarverse Team";
+
+        emailService.sendOtpEmail(request.getEmail(), subject, body);
+
+        return ResponseEntity.ok().build();
     }
 
     /**

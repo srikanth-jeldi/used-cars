@@ -1,0 +1,6 @@
+
+
+ALTER TABLE users MODIFY enabled TINYINT(1) NOT NULL DEFAULT 1;
+ALTER TABLE users MODIFY locked  TINYINT(1) NOT NULL DEFAULT 0;
+
+UPDATE users SET enabled = 1 WHERE enabled = 0;

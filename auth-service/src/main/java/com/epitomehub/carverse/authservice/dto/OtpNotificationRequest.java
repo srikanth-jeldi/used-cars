@@ -1,14 +1,13 @@
 package com.epitomehub.carverse.authservice.dto;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
 public class OtpNotificationRequest {
-
     private String email;
     private String fullName;
-    private String otpCode;
     private String phone;
+    private String otpCode;
 }

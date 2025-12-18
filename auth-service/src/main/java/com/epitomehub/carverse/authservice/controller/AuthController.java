@@ -4,8 +4,6 @@ import com.epitomehub.carverse.authservice.dto.*;
 import com.epitomehub.carverse.authservice.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,11 +14,6 @@ public class AuthController {
 
     public AuthController(AuthService authService) {
         this.authService = authService;
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "Auth Service is up 🚗🔑";
     }
 
     @PostMapping("/register")
@@ -36,26 +29,5 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
-    }
-
-    @GetMapping("/me")
-    public ResponseEntity<MeResponse> me(Authentication authentication) {
-
-        if (authentication == null || authentication.getPrincipal() == null) {
-            throw new AccessDeniedException("Unauthorized");
-        }
-
-        Object principal = authentication.getPrincipal();
-
-        Long userId;
-        if (principal instanceof Long) {
-            userId = (Long) principal;
-        } else if (principal instanceof String) {
-            userId = Long.parseLong((String) principal);
-        } else {
-            throw new AccessDeniedException("Invalid principal");
-        }
-
-        return ResponseEntity.ok(authService.me(userId));
     }
 }

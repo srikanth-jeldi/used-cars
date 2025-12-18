@@ -42,7 +42,7 @@ public class User implements UserDetails {
     private String phone;
 
     @Column(nullable = false)
-    private String password; // BCrypt encoded
+    private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
@@ -50,53 +50,35 @@ public class User implements UserDetails {
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id")
     )
-    @Column(name = "role")
+    @Column(name = "role", length = 50, nullable = false)
     @Builder.Default
     private Set<Role> roles = new HashSet<>();
 
     @Column(nullable = false)
     @Builder.Default
-    private boolean enabled = true;   // default true
+    private boolean enabled = false; // IMPORTANT: false until OTP verified
 
     @Column(nullable = false)
     @Builder.Default
-    private boolean locked = false;   // default false
+    private boolean locked = false;
 
     @CreationTimestamp
     private Instant createdAt;
 
-    // ===== UserDetails implementation =====
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
+                .map(r -> new SimpleGrantedAuthority(r.name())) // ROLE_USER / ROLE_ADMIN
                 .collect(Collectors.toSet());
     }
 
     @Override
     public String getUsername() {
-        // we use email as username
         return email;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true; // not using this flag currently
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return !locked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true; // not using this flag currently
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
+    @Override public boolean isAccountNonExpired() { return true; }
+    @Override public boolean isCredentialsNonExpired() { return true; }
+    @Override public boolean isAccountNonLocked() { return !locked; }
+    @Override public boolean isEnabled() { return enabled; }
 }

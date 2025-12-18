@@ -16,19 +16,18 @@ public class OtpToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;  // Perfect match with migration
 
-    // 6-digit OTP
-    @Column(nullable = false, length = 6)
-    private String otpCode;
+    @Column(name = "email", nullable = false, length = 255)
+    private String email;  // Match with DB column "email"
 
-    @Column(nullable = false, length = 100)
-    private String identifier; // email or phone
+    @Column(name = "otp", nullable = false, length = 10)
+    private String otp;  // Match with DB column "otp"
 
-    @Column(nullable = false)
+    @Column(name = "expires_at", nullable = false)
     private Instant expiresAt;
 
-    @Column(nullable = false)
+    @Column(name = "used", nullable = false)
     private boolean used;
 
     @Column(nullable = false)
