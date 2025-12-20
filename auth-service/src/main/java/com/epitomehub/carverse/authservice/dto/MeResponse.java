@@ -1,11 +1,22 @@
 package com.epitomehub.carverse.authservice.dto;
 
-import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record MeResponse(
-        Long id,
-        String fullName,
-        String email,
-        String phone,
-        Set<String> roles
-) {}
+import java.time.Instant;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class MeResponse {
+    private Long id;
+    private String fullName;
+    private String email;
+    private String phone;
+    private boolean enabled;
+    private boolean locked;
+    private Instant createdAt;
+}

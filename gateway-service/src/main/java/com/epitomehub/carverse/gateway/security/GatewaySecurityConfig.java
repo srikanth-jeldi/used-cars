@@ -1,4 +1,4 @@
-package com.epitomehub.carverse.gatewayservice.security;
+package com.epitomehub.carverse.gateway.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,17 +11,12 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 public class GatewaySecurityConfig {
 
     @Bean
-    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
-                // 🔴 CSRF off in gateway
-                .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .csrf(csrf -> csrf.disable())  // CSRF off (API gateway)
                 .authorizeExchange(exchanges -> exchanges
-                        // allow health
-                        .pathMatchers("/actuator/**").permitAll()
-                        // allow auth APIs (login/register) without token
-                        .pathMatchers("/api/auth/**").permitAll()
-                        // for now, allow everything (later we can secure with JWT at gateway)
-                        .anyExchange().permitAll()
+                        .pathMatchers("/actuator/**").permitAll()  // health checks
+                        .anyExchange().permitAll()                 // JWT filter handle chestundi auth ni
                 )
                 .build();
     }

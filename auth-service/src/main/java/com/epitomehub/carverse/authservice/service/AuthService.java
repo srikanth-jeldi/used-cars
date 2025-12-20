@@ -191,4 +191,19 @@ public class AuthService {
             }
         }
     }
+    public MeResponse getMeById(Long userId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+
+        return MeResponse.builder()
+                .id(user.getId())
+                .fullName(user.getFullName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .enabled(user.isEnabled())
+                .locked(user.isLocked())
+                .createdAt(user.getCreatedAt())
+                .build();
+    }
 }

@@ -22,8 +22,8 @@ eureka:
 jwt:
   # must be a BASE64 string with enough length; for now:
   secret: bXktdmVyeS1sb25nLXNlY3JldC1rZXktY2FydmVyc2UtMjAyNQ==
-  expiration-ms: 900000           # 15 minutes
-  refresh-expiration-ms: 604800000 # 7 days
+  expiration-ms: 900000        # 15 minutes
+  refresh-expiration-ms: 604800000  # 7 days
 
   spring:
     mail:

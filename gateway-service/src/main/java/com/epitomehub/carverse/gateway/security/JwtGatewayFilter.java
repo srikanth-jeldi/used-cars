@@ -1,6 +1,8 @@
 package com.epitomehub.carverse.gateway.security;
 
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,15 +20,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtGatewayFilter implements GlobalFilter, Ordered {
 
-    private final com.epitomehub.carverse.gatewayservice.security.JwtService jwtService;
+    private static final Logger log = LoggerFactory.getLogger(JwtGatewayFilter.class);
+
+    private final JwtService jwtService;
 
     private static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
 
-    // ✅ Public endpoints (no token required)
+    // Only auth & actuator open – chat, cars protected
     private static final String[] PUBLIC_PATHS = {
-            "/api/auth/register",
-            "/api/auth/login",
-            "/api/auth/verify-otp",
+            "/api/auth/**",
             "/actuator/**"
     };
 
@@ -35,7 +37,6 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
 
         String path = exchange.getRequest().getURI().getPath();
 
-        // allow public endpoints without token
         if (isPublic(path)) {
             return chain.filter(exchange);
         }
@@ -43,6 +44,7 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
         String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            log.warn("Missing or invalid Authorization header for path: {}", path);
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
@@ -50,6 +52,7 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
         String token = authHeader.substring(7);
 
         if (!jwtService.isTokenValid(token)) {
+            log.warn("Invalid or expired JWT token for path: {}", path);
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
@@ -58,6 +61,7 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
         List<String> roles = jwtService.extractRoles(token);
 
         if (userId == null) {
+            log.warn("UserId not found in JWT token");
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
         }
@@ -72,14 +76,15 @@ public class JwtGatewayFilter implements GlobalFilter, Ordered {
 
     private boolean isPublic(String path) {
         for (String p : PUBLIC_PATHS) {
-            if (PATH_MATCHER.match(p, path)) return true;
+            if (PATH_MATCHER.match(p, path)) {
+                return true;
+            }
         }
         return false;
     }
 
     @Override
     public int getOrder() {
-        // run early
         return -1;
     }
 }

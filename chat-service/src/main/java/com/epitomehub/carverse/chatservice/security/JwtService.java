@@ -2,41 +2,52 @@ package com.epitomehub.carverse.chatservice.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
+import java.util.Base64;
 
 @Service
 public class JwtService {
 
-    private final Key key;
+    private final Key signingKey;
 
-    public JwtService(@Value("${jwt.secret}") String secretKey) {
-        // IMPORTANT: auth-service uses BASE64 decode; chat-service must do same
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        this.key = Keys.hmacShaKeyFor(keyBytes);
+    public JwtService(@Value("${jwt.secret}") String base64Secret) {
+        byte[] keyBytes = Base64.getDecoder().decode(base64Secret);
+        this.signingKey = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public Claims extractAllClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
+    public boolean isTokenValid(String token) {
+        try {
+            extractAllClaims(token);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     public Long extractUserId(String token) {
         Claims claims = extractAllClaims(token);
 
-        Object userIdObj = claims.get("userId");
-        if (userIdObj != null) {
-            return Long.valueOf(userIdObj.toString());
-        }
+        // Choose ONE based on how your auth-service creates token:
+        // 1) If you store userId in subject:
+        // return Long.parseLong(claims.getSubject());
 
-        // fallback (only works if subject is numeric userId)
-        return Long.valueOf(claims.getSubject());
+        // 2) If you store userId as a claim "userId":
+        Object userId = claims.get("userId");
+        if (userId == null) return null;
+
+        if (userId instanceof Number n) return n.longValue();
+        return Long.parseLong(userId.toString());
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(signingKey)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
     }
 }

@@ -27,12 +27,18 @@ public class ChatMessage {
     @Column(nullable = false)
     private Long receiverId;
 
-    @Column(nullable = false, length = 2000)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
-
+    @Builder.Default
     @Column(nullable = false)
-    private boolean isRead;
+    private boolean isRead = false;  // ← MUST be isRead for isRead() getter
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
 }

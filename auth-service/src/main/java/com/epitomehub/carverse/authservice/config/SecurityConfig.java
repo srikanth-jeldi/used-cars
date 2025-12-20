@@ -36,13 +36,14 @@ public class SecurityConfig {
                                 "/api/auth/test",
                                 "/api/auth/register",
                                 "/api/auth/verify-otp",
-<<<<<<< HEAD
+                                "/api/users/",
                                 "/api/auth/login",
                                 "/api/auth/verify-registration-otp-only",
-                                "/error"
-=======
-                                "/api/auth/login"
->>>>>>> 0c5729cee00bbbef38ebd7666fd09bc4d98850d4
+                                "/error",
+                                "/api/auth/me"
+
+
+
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

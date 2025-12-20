@@ -1,7 +1,9 @@
+com\epitomehub\carverse\authservice\controller\UserProfileController.class
 com\epitomehub\carverse\authservice\config\SecurityBeansConfig.class
 com\epitomehub\carverse\authservice\entity\OtpToken$OtpType.class
 com\epitomehub\carverse\authservice\dto\OtpVerifyRequest.class
 com\epitomehub\carverse\authservice\controller\AuthController.class
+com\epitomehub\carverse\authservice\dto\UserProfileDto.class
 com\epitomehub\carverse\authservice\entity\OtpToken$OtpTokenBuilder.class
 com\epitomehub\carverse\authservice\dto\MeResponse.class
 com\epitomehub\carverse\authservice\entity\User.class
@@ -10,6 +12,7 @@ com\epitomehub\carverse\authservice\exception\ApiError.class
 com\epitomehub\carverse\authservice\dto\LoginRequest.class
 com\epitomehub\carverse\authservice\exception\BadRequestException.class
 com\epitomehub\carverse\authservice\config\JwtAuthenticationFilter.class
+com\epitomehub\carverse\authservice\dto\MeResponse$MeResponseBuilder.class
 com\epitomehub\carverse\authservice\dto\RegisterRequest.class
 com\epitomehub\carverse\authservice\exception\GlobalExceptionHandler.class
 com\epitomehub\carverse\authservice\service\AuthService.class

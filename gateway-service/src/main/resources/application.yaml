@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: gateway-service
+
   cloud:
     gateway:
       discovery:
@@ -15,9 +16,38 @@ spring:
           uri: lb://auth-service
           predicates:
             - Path=/api/auth/**
-          # filters:
-          #   - StripPrefix=1    # <-- REMOVE / comment this
+          filters:
+            - StripPrefix=1   # ← UNCOMMENT THIS – important for /api/auth/** to reach auth-service correctly
+
+        - id: car-listing-service
+          uri: lb://car-listing-service
+          predicates:
+            - Path=/api/cars/**
+          filters:
+            - StripPrefix=1
+
+        - id: chat-service
+          uri: lb://chat-service
+          predicates:
+            - Path=/api/chat/**
+          filters:
+            - StripPrefix=1
+
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+          filters:
+            - StripPrefix=1
+
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+
+jwt:
+  secret: bXktdmVyeS1sb25nLXNlY3JldC1rZXktY2FydmVyc2UtMjAyNQ==
+  expiration-ms: 900000        # 15 minutes
+  refresh-expiration-ms: 604800000  # 7 days

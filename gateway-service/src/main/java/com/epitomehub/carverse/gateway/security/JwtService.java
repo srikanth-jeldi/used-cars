@@ -1,9 +1,10 @@
-package com.epitomehub.carverse.gatewayservice.security;
+package com.epitomehub.carverse.gateway.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,56 +12,72 @@ import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Function;
 
 @Service
 public class JwtService {
+
+    private static final Logger log = LoggerFactory.getLogger(JwtService.class);
 
     @Value("${jwt.secret}")
     private String secretKey;
 
     public boolean isTokenValid(String token) {
         try {
-            Claims claims = extractAllClaims(token);
-            Date exp = claims.getExpiration();
-            return exp != null && exp.after(new Date());
+            Jwts.parserBuilder()
+                    .setSigningKey(getSignInKey())
+                    .build()
+                    .parseClaimsJws(token); // ← idi signature + expiration full validate chestundi
+            return true;
+        } catch (SecurityException | MalformedJwtException e) {
+            log.warn("Invalid JWT signature");
+        } catch (ExpiredJwtException e) {
+            log.warn("JWT token is expired");
+        } catch (UnsupportedJwtException e) {
+            log.warn("JWT token is unsupported");
+        } catch (IllegalArgumentException e) {
+            log.warn("JWT token is empty");
         } catch (Exception e) {
-            return false;
+            log.warn("JWT validation failed: {}", e.getMessage());
         }
+        return false;
     }
 
     public Long extractUserId(String token) {
-        Object val = extractAllClaims(token).get("userId");
-        if (val == null) return null;
-
-        if (val instanceof Integer i) return i.longValue();
-        if (val instanceof Long l) return l;
-        if (val instanceof String s) return Long.parseLong(s);
-
-        throw new IllegalArgumentException("Invalid userId claim type: " + val.getClass());
+        try {
+            Claims claims = extractAllClaims(token);
+            Object userIdObj = claims.get("userId");
+            if (userIdObj == null) return null;
+            if (userIdObj instanceof Number number) return number.longValue();
+            if (userIdObj instanceof String str) return Long.parseLong(str);
+            return null;
+        } catch (Exception e) {
+            log.warn("Failed to extract userId", e);
+            return null;
+        }
     }
 
-    @SuppressWarnings("unchecked")
     public List<String> extractRoles(String token) {
-        Object val = extractAllClaims(token).get("roles");
-        if (val == null) return List.of();
-
-        if (val instanceof List<?> list) {
-            List<String> out = new ArrayList<>();
-            for (Object o : list) {
-                if (o != null) out.add(String.valueOf(o));
+        try {
+            Claims claims = extractAllClaims(token);
+            Object roles = claims.get("roles");
+            if (roles instanceof List<?> list) {
+                return list.stream()
+                        .map(Object::toString)
+                        .toList();
             }
-            return out;
+            return List.of();
+        } catch (Exception e) {
+            log.warn("Failed to extract roles", e);
+            return List.of();
         }
-        return List.of(String.valueOf(val));
     }
 
     public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
-    }
-
-    private <T> T extractClaim(String token, Function<Claims, T> resolver) {
-        return resolver.apply(extractAllClaims(token));
+        try {
+            return extractAllClaims(token).getSubject();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private Claims extractAllClaims(String token) {
