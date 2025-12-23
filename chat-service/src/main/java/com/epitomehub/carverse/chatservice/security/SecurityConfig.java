@@ -37,7 +37,7 @@ public class SecurityConfig {
 
                         // (optional) actuator for testing
                         .requestMatchers("/actuator/**").permitAll()
-
+                        .requestMatchers("/api/chats/**").permitAll()
                         // If you want this REST endpoint to work WITHOUT JWT, uncomment:
                         // .requestMatchers(HttpMethod.POST, "/api/chats/messages").permitAll()
 

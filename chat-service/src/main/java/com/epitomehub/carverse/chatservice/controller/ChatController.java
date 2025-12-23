@@ -27,6 +27,10 @@ public class ChatController {
     private final SseHub sseHub;
     private final ConversationRepository conversationRepository;
 
+    // -----------------------------
+    // Messages
+    // -----------------------------
+
     @PostMapping("/messages")
     public ChatMessageResponse sendMessage(Authentication authentication,
                                            @Valid @RequestBody SendMessageRequest request) {
@@ -52,6 +56,10 @@ public class ChatController {
         return "Marked as read. Updated rows: " + updated;
     }
 
+    // -----------------------------
+    // Unread counts + inbox
+    // -----------------------------
+
     @GetMapping("/unread-count")
     public UnreadCountResponse unreadCount(Authentication authentication) {
         Long receiverId = requireUserId(authentication);
@@ -71,16 +79,23 @@ public class ChatController {
         return chatService.getInbox(userId);
     }
 
+    // -----------------------------
+    // SSE subscribe
+    // -----------------------------
+
     @GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter subscribe(Authentication authentication) {
         Long userId = requireUserId(authentication);
         return sseHub.subscribe(userId);
     }
 
+    // -----------------------------
+    // Conversation create/get (by current user + otherUserId)
+    // -----------------------------
+
     /**
-     * ✅ SECURE VERSION:
-     * Create/Get conversation using CURRENT USER from JWT (principal) and otherUserId from request.
      * UI should send: { "otherUserId": 15 }
+     * Current user comes from JWT/principal.
      */
     @PostMapping("/conversation")
     public ResponseEntity<ConversationResponse> getOrCreateConversation(
@@ -94,7 +109,6 @@ public class ChatController {
             return ResponseEntity.badRequest().build();
         }
 
-        // order-agnostic: store min/max
         long a = Math.min(me, other);
         long b = Math.max(me, other);
 
@@ -119,6 +133,10 @@ public class ChatController {
         );
     }
 
+    // -----------------------------
+    // Helpers
+    // -----------------------------
+
     private Long requireUserId(Authentication authentication) {
         if (authentication == null || authentication.getPrincipal() == null) {
             throw new AccessDeniedException("Unauthorized");
@@ -128,6 +146,7 @@ public class ChatController {
         }
         return (Long) authentication.getPrincipal();
     }
+
     private Conversation requireConversationMember(Long userId, Long conversationId) {
         Conversation conv = conversationRepository.findById(conversationId)
                 .orElseThrow(() -> new RuntimeException("Conversation not found: " + conversationId));

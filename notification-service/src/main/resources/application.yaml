@@ -4,6 +4,19 @@ server:
 spring:
   application:
     name: notification-service
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
+
+security:
+  internal:
+    token: carverse-internal-secret-123
+services:
+ auth:
+  base-url: http://localhost:7001
 
 notification:
   base-url: http://localhost:7003
@@ -36,3 +49,10 @@ management:
   endpoint:
     health:
       show-details: always
+
+logging:
+  level:
+    org.springframework.cache: DEBUG
+
+  internal:
+    token: carverse-internal-secret-123

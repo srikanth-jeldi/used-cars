@@ -1,29 +1,26 @@
 package com.epitomehub.carverse.notificationservice.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class ChatNotificationRequest {
 
-    @NotBlank
-    private String fromName;
+    @NotNull
+    private Long receiverId;
 
-    @NotBlank
-    private String toName;
+    @NotNull
+    private Long senderId;
 
-    @NotBlank
-    @Email
-    private String toEmail;
-
-    private String toPhone;
+    @NotNull
+    private Long conversationId;
 
     @NotBlank
     private String messagePreview;
 
-    private String carTitle;        // optional
-    private String chatUrl;         // deep link
+    private String carTitle;
+    private String chatUrl;
 
     private boolean sendEmail = true;
     private boolean sendSms = false;

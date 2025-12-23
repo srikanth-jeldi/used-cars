@@ -1,22 +1,27 @@
 package com.epitomehub.carverse.notificationservice.service;
 
-
-import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
 import com.epitomehub.carverse.notificationservice.dto.ChatNotificationRequest;
 import com.epitomehub.carverse.notificationservice.dto.OtpNotificationRequest;
+import com.epitomehub.carverse.notificationservice.dto.UserDto;
+import com.epitomehub.carverse.notificationservice.util.EmailRateLimiter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class NotificationService {
-
-    private static final Logger log = LoggerFactory.getLogger(NotificationService.class);
 
     private final EmailService emailService;
     private final SmsService smsService;
+    private final EmailRateLimiter emailRateLimiter;
+
+    // ✅ Redis-cached user fetch
+    private final UserDirectoryService userDirectoryService;
+
+    // ---------------- OTP (unchanged) ----------------
 
     @Async
     public void sendOtpNotification(OtpNotificationRequest request) {
@@ -38,17 +43,52 @@ public class NotificationService {
         emailService.sendHtmlMail(request.getEmail(), subject, html);
 
         if (request.getPhone() != null && !request.getPhone().isBlank()) {
-            smsService.sendSms(request.getPhone(), "Your CarVerse OTP is " + request.getOtpCode());
+            smsService.sendSms(
+                    request.getPhone(),
+                    "Your CarVerse OTP is " + request.getOtpCode()
+            );
         }
     }
+
+    // ---------------- CHAT NOTIFICATION (FINAL) ----------------
 
     @Async
     public void sendChatNotification(ChatNotificationRequest request) {
 
-        if (request.isSendEmail()) {
-            String subject = "New message on CarVerse from " + request.getFromName();
+        if (request.getReceiverId() == null || request.getSenderId() == null || request.getConversationId() == null) {
+            log.warn("Invalid chat notification request (missing ids): {}", request);
+            return;
+        }
 
-            String html = """
+        UserDto receiver = userDirectoryService.getUserById(request.getReceiverId());
+        if (receiver == null || receiver.email() == null || receiver.email().isBlank()) {
+            log.warn("Receiver email not found. receiverId={}", request.getReceiverId());
+            return;
+        }
+
+        UserDto sender = userDirectoryService.getUserById(request.getSenderId());
+
+        String toName = receiver.fullName() != null && !receiver.fullName().isBlank()
+                ? receiver.fullName()
+                : "User " + receiver.id();
+
+        String fromName = sender != null && sender.fullName() != null && !sender.fullName().isBlank()
+                ? sender.fullName()
+                : "User " + request.getSenderId();
+
+        // -------- EMAIL --------
+        if (request.isSendEmail()) {
+
+            // ✅ rate-limit only email (do not block SMS)
+            String rateKey = request.getReceiverId() + ":" + request.getConversationId();
+            if (!emailRateLimiter.allow(rateKey)) {
+                log.info("Rate-limited chat email. receiverId={}, conversationId={}",
+                        request.getReceiverId(), request.getConversationId());
+            } else {
+
+                String subject = "New message on CarVerse from " + fromName;
+
+                String html = """
                     <html>
                     <body>
                         <p>Hi %s,</p>
@@ -61,27 +101,33 @@ public class NotificationService {
                     </body>
                     </html>
                     """.formatted(
-                    request.getToName(),
-                    request.getFromName(),
-                    request.getCarTitle() != null && !request.getCarTitle().isBlank()
-                            ? "<p>Car: <b>" + request.getCarTitle() + "</b></p>"
-                            : "",
-                    request.getMessagePreview(),
-                    request.getChatUrl() != null && !request.getChatUrl().isBlank()
-                            ? "<p><a href=\"" + request.getChatUrl() + "\">Open chat</a></p>"
-                            : ""
-            );
+                        toName,
+                        fromName,
+                        request.getCarTitle() != null && !request.getCarTitle().isBlank()
+                                ? "<p>Car: <b>" + request.getCarTitle() + "</b></p>"
+                                : "",
+                        request.getMessagePreview(),
+                        request.getChatUrl() != null && !request.getChatUrl().isBlank()
+                                ? "<p><a href=\"" + request.getChatUrl() + "\">Open chat</a></p>"
+                                : ""
+                );
 
-            emailService.sendHtmlMail(request.getToEmail(), subject, html);
+                emailService.sendHtmlMail(receiver.email(), subject, html);
+            }
         }
 
+        // -------- SMS --------
         if (request.isSendSms()
-                && request.getToPhone() != null
-                && !request.getToPhone().isBlank()) {
+                && receiver.phone() != null
+                && !receiver.phone().isBlank()) {
 
-            String smsText = "New CarVerse message from " + request.getFromName() +
+            String smsText = "New CarVerse message from " + fromName +
                     ": " + request.getMessagePreview();
-            smsService.sendSms(request.getToPhone(), smsText);
+
+            smsService.sendSms(receiver.phone(), smsText);
         }
+
+        log.info("Chat notification processed. senderId={}, receiverId={}, conversationId={}",
+                request.getSenderId(), request.getReceiverId(), request.getConversationId());
     }
 }

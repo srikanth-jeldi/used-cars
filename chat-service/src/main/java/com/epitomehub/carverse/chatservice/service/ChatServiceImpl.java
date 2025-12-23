@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,13 @@ public class ChatServiceImpl implements ChatService {
     @Value("${notification.base-url:http://localhost:7003}")
     private String notificationBaseUrl;
 
+    @Value("${app.frontend.chat-url:http://localhost:3000/chat}")
+    private String chatBaseUrl;
+
+    // ✅ NEW: internal token shared between services
+    @Value("${internal.token}")
+    private String internalToken;
+
     @Override
     public ChatMessageResponse sendMessage(Long senderId, SendMessageRequest request) {
 
@@ -49,10 +59,9 @@ public class ChatServiceImpl implements ChatService {
             conversationId = createOrGetConversation(senderId, receiverId).getId();
         }
 
-        // ✅ FIX: make it effectively final for lambda usage
         final Long cid = conversationId;
 
-        // ✅ SECURITY CHECK for provided/derived conversationId
+        // ✅ SECURITY CHECK for conversation membership
         Conversation conv = conversationRepository.findById(cid)
                 .orElseThrow(() -> new RuntimeException("Conversation not found: " + cid));
 
@@ -61,12 +70,13 @@ public class ChatServiceImpl implements ChatService {
             throw new AccessDeniedException("Forbidden: not a member of conversation " + cid);
         }
 
-        // Ensure receiverId is the OTHER participant (strict)
+        // Ensure receiver is other member
         Long otherUserId = senderId.equals(conv.getUser1Id()) ? conv.getUser2Id() : conv.getUser1Id();
         if (!otherUserId.equals(receiverId)) {
             throw new AccessDeniedException("Forbidden: receiverId does not match conversation other member");
         }
 
+        // Persist message
         ChatMessage saved = chatMessageRepository.save(
                 ChatMessage.builder()
                         .conversationId(cid)
@@ -84,15 +94,39 @@ public class ChatServiceImpl implements ChatService {
         messagingTemplate.convertAndSend("/topic/users/" + receiverId, response);
 
         // ✅ SSE push (receiver live)
-        // (use your existing method name; if yours is publish(...) keep that)
         sseHub.publish(receiverId, "chat-message", response);
 
-        // ✅ Optional: Notification service call (wrap to avoid breaking chat if it fails)
-        try {
-            // Example endpoint; adjust if you already have a DTO / API in notification-service
-            // restTemplate.postForEntity(notificationBaseUrl + "/api/notifications/chat", response, Void.class);
-        } catch (Exception ignored) {
-            // do not fail chat message just because notification failed
+        // ✅ Offline notification (only if receiver NOT online)
+        if (!sseHub.isOnline(receiverId)) {
+            try {
+                String msg = saved.getMessage() == null ? "" : saved.getMessage();
+                String preview = msg.length() > 80 ? msg.substring(0, 80) : msg;
+
+                ChatNotificationRequest notifyReq = new ChatNotificationRequest();
+                notifyReq.setSenderId(senderId);
+                notifyReq.setReceiverId(receiverId);
+                notifyReq.setConversationId(cid);
+                notifyReq.setMessagePreview(preview);
+                notifyReq.setChatUrl(chatBaseUrl + "/" + cid);
+                notifyReq.setSendEmail(true);
+                notifyReq.setSendSms(false);
+
+                // ✅ NEW: add internal token header
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_JSON);
+                headers.set("X-INTERNAL-TOKEN", internalToken);
+
+                HttpEntity<ChatNotificationRequest> entity = new HttpEntity<>(notifyReq, headers);
+
+                restTemplate.postForEntity(
+                        notificationBaseUrl + "/api/notifications/chat-message",
+                        entity,
+                        Void.class
+                );
+
+            } catch (Exception ignored) {
+                // do not fail chat delivery just because notification failed
+            }
         }
 
         return response;
@@ -166,12 +200,9 @@ public class ChatServiceImpl implements ChatService {
         long b = Math.max(user1, user2);
 
         Optional<Conversation> existing = conversationRepository.findByUsers(a, b);
-        if (existing.isPresent()) {
-            return existing.get();
-        }
+        if (existing.isPresent()) return existing.get();
 
         LocalDateTime now = LocalDateTime.now();
-
         return conversationRepository.save(
                 Conversation.builder()
                         .user1Id(a)

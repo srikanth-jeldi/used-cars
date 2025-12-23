@@ -24,6 +24,12 @@ public class SseHub {
         return emitter;
     }
 
+    // ✅ NEW: online check
+    public boolean isOnline(Long userId) {
+        List<SseEmitter> list = emitters.get(userId);
+        return list != null && !list.isEmpty();
+    }
+
     public void publish(Long userId, String eventName, Object data) {
         List<SseEmitter> list = emitters.getOrDefault(userId, List.of());
         for (SseEmitter emitter : list) {
