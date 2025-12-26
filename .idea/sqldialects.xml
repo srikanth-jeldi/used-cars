@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/chat-service/src/main/resources/db/migration/V3__create_conversations.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/chat-service/src/main/resources/db/migration/V4__fix_conversations_columns.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/chat-service/src/main/resources/db/migration/V5__add_updated_at.sql" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/chat-service/src/main/resources/db/migration/V6__create_conversations_table.sql" dialect="GenericSQL" />
-  </component>
-</project>
