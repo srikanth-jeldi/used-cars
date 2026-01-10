@@ -26,6 +26,12 @@ public class Car {
     @Column(nullable = false)
     private String model;
 
+    @Column(length = 100)
+    private String variant;
+
+    // (Optional for later price-insight) keep future ready:
+    // private String variant;
+
     @Column(name = "fuel_type", nullable = false)
     private String fuelType;
 
@@ -41,10 +47,17 @@ public class Car {
     @Column(name = "km_driven", nullable = false)
     private Integer kmsDriven;
 
+    // Location
     @Column(nullable = false)
     private String city;
 
     private String state;
+
+    private String area;     // locality
+    private String pincode;  // optional but useful
+
+    private Double lat;      // optional for "near me"
+    private Double lng;      // optional for "near me"
 
     private String title;
 
@@ -53,6 +66,16 @@ public class Car {
 
     @Column(name = "owner_id", nullable = false)
     private Long ownerId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private CarStatus status;
+
+    @Column(name = "published_at")
+    private LocalDateTime publishedAt;
+
+    @Column(name = "sold_at")
+    private LocalDateTime soldAt;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -66,8 +89,13 @@ public class Car {
 
     @PrePersist
     public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        this.createdAt = now;
+        this.updatedAt = now;
+
+        if (this.status == null) {
+            this.status = CarStatus.DRAFT;
+        }
     }
 
     @PreUpdate
@@ -75,7 +103,6 @@ public class Car {
         this.updatedAt = LocalDateTime.now();
     }
 
-    // Important for orphanRemoval updates: don't replace the list reference
     public void replaceImages(List<CarImage> newImages) {
         this.images.clear();
         if (newImages != null) {

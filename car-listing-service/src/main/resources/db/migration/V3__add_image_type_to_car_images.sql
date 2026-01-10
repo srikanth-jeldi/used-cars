@@ -1,0 +1,2 @@
+ALTER TABLE car_images
+    ADD COLUMN image_type VARCHAR(20) NOT NULL DEFAULT 'EXTERIOR';

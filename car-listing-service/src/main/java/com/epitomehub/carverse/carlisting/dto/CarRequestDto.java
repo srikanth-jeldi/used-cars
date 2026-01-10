@@ -17,10 +17,12 @@ public class CarRequestDto {
     private String model;
 
     @NotBlank
-    private String fuelType; // PETROL / DIESEL / EV etc
+    private String variant;
+    @NotBlank
+    private String fuelType;
 
     @NotBlank
-    private String transmission; // MANUAL / AUTOMATIC etc
+    private String transmission;
 
     @NotNull
     @Min(1950)
@@ -40,10 +42,14 @@ public class CarRequestDto {
 
     private String state;
 
-    private String title;
+    private String area;
+    private String pincode;
+    private Double lat;
+    private Double lng;
 
+    private String title;
     private String description;
 
-    // populated from JWT (ownerId from token). Not required in request.
+    // Set only from auth/gateway (do not trust client input)
     private Long ownerId;
 }

@@ -16,6 +16,8 @@ public class CarResponseDto {
 
     private String brand;
     private String model;
+    private String variant;
+
     private String fuelType;
     private String transmission;
 
@@ -25,6 +27,12 @@ public class CarResponseDto {
 
     private String city;
     private String state;
+    private String area;
+    private String pincode;
+    private Double lat;
+    private Double lng;
+
+    private String status; // DRAFT/PUBLISHED/SOLD/ARCHIVED
 
     private Long ownerId;
 
@@ -32,4 +40,9 @@ public class CarResponseDto {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private LocalDateTime publishedAt;
+    private LocalDateTime soldAt;
+    private String thumbnailUrl;
+    private long imageCount;
+
 }

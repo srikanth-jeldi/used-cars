@@ -14,6 +14,7 @@ public class CarResponse {
     private String title;
     private String brand;
     private String model;
+    private String variant;
     private Integer year;
 
     private Double price;
@@ -28,4 +29,8 @@ public class CarResponse {
     private Boolean active;
 
     private Instant createdAt;
+
+
+    private String thumbnailUrl;
+    private long imageCount;
 }

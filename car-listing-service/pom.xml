@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <parent>
         <groupId>com.epitomehub</groupId>
         <artifactId>carverse-backend</artifactId>
@@ -8,6 +9,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.epitomehub.carverse</groupId>
     <artifactId>car-listing-service</artifactId>
     <version>1.0.0</version>
@@ -16,10 +18,14 @@
     <properties>
         <java.version>17</java.version>
         <spring.boot.version>3.2.5</spring.boot.version>
+
+        <!-- Flyway (Maven-side) DB props: set via env vars or -D on command line -->
+        <flyway.url>${env.CAR_LISTING_DB_URL}</flyway.url>
+        <flyway.user>${env.CAR_LISTING_DB_USER}</flyway.user>
+        <flyway.password>${env.CAR_LISTING_DB_PASSWORD}</flyway.password>
     </properties>
 
     <dependencies>
-
         <!-- Spring Boot Starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,7 +49,7 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!-- Lombok (for getters/setters/builders) -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -75,6 +81,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- MinIO -->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.5.12</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -91,6 +103,34 @@
 
     <build>
         <plugins>
+
+            <!-- Flyway Maven Plugin (uses Maven properties, not Spring properties) -->
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>10.10.0</version>
+
+                <!-- Important for MySQL support in Flyway 10 -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.flywaydb</groupId>
+                        <artifactId>flyway-mysql</artifactId>
+                        <version>10.10.0</version>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                    <url>${flyway.url}</url>
+                    <user>${flyway.user}</user>
+                    <password>${flyway.password}</password>
+
+                    <!-- your migrations are in classpath:db/migration by default -->
+                    <!-- If you used a custom folder, uncomment and adjust -->
+                    <!-- <locations>classpath:db/migration</locations> -->
+                </configuration>
+            </plugin>
+
+            <!-- Spring Boot Plugin -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -108,8 +148,8 @@
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
-
 
 </project>

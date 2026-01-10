@@ -10,6 +10,7 @@ public final class CarSpecifications {
     public static Specification<Car> withFilters(
             String brand,
             String model,
+            String variant,
             String fuelType,
             String transmission,
             String city,
@@ -26,6 +27,9 @@ public final class CarSpecifications {
             }
             if (model != null && !model.isBlank()) {
                 predicates = cb.and(predicates, cb.equal(cb.lower(root.get("model")), model.toLowerCase()));
+            }
+            if (variant != null && !variant.isBlank()) {
+                predicates = cb.and(predicates, cb.equal(cb.lower(root.get("variant")), variant.toLowerCase()));
             }
             if (fuelType != null && !fuelType.isBlank()) {
                 predicates = cb.and(predicates, cb.equal(cb.lower(root.get("fuelType")), fuelType.toLowerCase()));
