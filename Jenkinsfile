@@ -15,7 +15,7 @@ pipeline {
         stage('Build JAR') {
             steps {
                 // whole multi-module project build
-                sh 'mvn -B clean package -DskipTests'
+                sh 'mvn -B -ntp clean verify'
             }
         }
 
