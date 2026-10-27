@@ -13,7 +13,7 @@ spring:
 
 security:
   internal:
-    token: carverse-internal-secret-123
+    token: ${INTERNAL_SERVICE_TOKEN}
 services:
  auth:
   base-url: http://localhost:7001
@@ -24,7 +24,7 @@ notification:
     host: smtp.gmail.com
     port: 587
     username: carverse.notifications@gmail.com
-    password: akueauigdpnupwcs
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -55,4 +55,4 @@ logging:
     org.springframework.cache: DEBUG
 
   internal:
-    token: carverse-internal-secret-123
+    token: ${INTERNAL_SERVICE_TOKEN}
