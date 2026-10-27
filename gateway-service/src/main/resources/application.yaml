@@ -48,6 +48,6 @@ eureka:
     register-with-eureka: true
 
 jwt:
-  secret: bXktdmVyeS1sb25nLXNlY3JldC1rZXktY2FydmVyc2UtMjAyNQ==
+  secret: ${JWT_SECRET}
   expiration-ms: 900000        # 15 minutes
   refresh-expiration-ms: 604800000  # 7 days

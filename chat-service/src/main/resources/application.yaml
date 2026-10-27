@@ -8,7 +8,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/carverse_chatdb?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root
-    password: root
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -31,7 +31,7 @@ redis:
 
 # ✅ INTERNAL TOKEN (must be OUTSIDE spring:)
 internal:
-  token: carverse-internal-secret-123
+  token: ${INTERNAL_SERVICE_TOKEN}
 
 eureka:
   client:
@@ -55,7 +55,7 @@ notification:
   enabled: true
 
 jwt:
-  secret: bXktdmVyeS1sb25nLXNlY3JldC1rZXktY2FydmVyc2UtMjAyNQ==
+  secret: ${JWT_SECRET}
   expiration-ms: 900000
   refresh-expiration-ms: 604800000
 
